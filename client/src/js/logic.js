@@ -74,9 +74,9 @@ export function populateChart() {
       data: {
         labels,
         datasets: [{
-            label: "Total Over Time",
+            label: "Total",
             fill: true,
-            backgroundColor: "#6666ff",
+            backgroundColor: "#fc0303",
             data
         }]
     }
@@ -157,4 +157,3 @@ export function  sendTransaction(isAdding) {
 // document.querySelector("#sub-btn").onclick = function() {
 //   sendTransaction(false);
 // };
- 
