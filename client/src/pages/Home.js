@@ -1,19 +1,7 @@
-import React, { useState } from "react";
-import { populateTable, populateTotal, sendTransaction, populateChart } from '../js/logic';
+import React from "react";
+import { sendTransaction } from '../js/logic';
 
 const Home = () => {
-    // fetch("/api/transaction")
-    // .then(response => {
-    //   return response.json();
-    // })
-    // .then(data => {
-    //   // save db data on global variable
-    //   transactions = data;
-  
-    //   populateTotal();
-    //   populateTable();
-    // //   populateChart();
-    // });
 
   return (
     <div  id="home" className="wrapper">

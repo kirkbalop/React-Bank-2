@@ -27,3 +27,23 @@ export const getMe = (token) => {
       body: JSON.stringify(userData),
     });
   };
+
+export const saveTransaction = (transactionData, token) => {
+  return fetch('/transactions', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(transactionData),
+  });
+};
+
+export const deleteTransaction = (transactionId, token) => {
+  return fetch(`/transactions/${transactionId}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+};

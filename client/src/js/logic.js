@@ -1,10 +1,12 @@
 import { saveRecord } from './idb.js';
+import { Chart, registerables } from 'chart.js';
 
 let transactions = [];
 let myChart;
+Chart.register(...registerables);
 
 
-fetch("/api/transaction")
+fetch("api/transactions")
   .then(response => {
     return response.json();
   })
@@ -14,7 +16,7 @@ fetch("/api/transaction")
 
     populateTotal();
     populateTable();
-    // populateChart();
+    populateChart();
   });
 
 export function populateTotal() {
@@ -43,44 +45,44 @@ export function populateTable() {
   });
 }
 
-// export function populateChart() {
-//   // copy array and reverse it
-//   let reversed = transactions.slice().reverse();
-//   let sum = 0;
+export function populateChart() {
+  // copy array and reverse it
+  let reversed = transactions.slice().reverse();
+  let sum = 0;
 
-//   // create date labels for chart
-//   let labels = reversed.map(t => {
-//     let date = new Date(t.date);
-//     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-//   });
+  // create date labels for chart
+  let labels = reversed.map(t => {
+    let date = new Date(t.date);
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  });
 
-//   // create incremental values for chart
-//   let data = reversed.map(t => {
-//     sum += parseInt(t.value);
-//     return sum;
-//   });
+  // create incremental values for chart
+  let data = reversed.map(t => {
+    sum += parseInt(t.value);
+    return sum;
+  });
 
-//   // remove old chart if it exists
-//   if (myChart) {
-//     myChart.destroy();
-//   }
+  // remove old chart if it exists
+  if (myChart) {
+    myChart.destroy();
+  }
 
-//   let ctx = document.getElementById("myChart").getContext("2d");
+  let ctx = document.getElementById("myChart").getContext("2d");
 
-//   myChart = new Chart(ctx, {
-//     type: 'line',
-//       data: {
-//         labels,
-//         datasets: [{
-//             label: "Total Over Time",
-//             fill: true,
-//             backgroundColor: "#6666ff",
-//             data
-//         }]
-//     }
-//   });
+  myChart = new Chart(ctx, {
+    type: 'line',
+      data: {
+        labels,
+        datasets: [{
+            label: "Total Over Time",
+            fill: true,
+            backgroundColor: "#6666ff",
+            data
+        }]
+    }
+  });
   
-// }
+}
 
 export function  sendTransaction(isAdding) {
   let nameEl = document.querySelector("#t-name");
@@ -112,12 +114,12 @@ export function  sendTransaction(isAdding) {
   transactions.unshift(transaction);
 
   // re-run logic to populate ui with new record
-//   populateChart();
+  populateChart();
   populateTable();
   populateTotal();
   
   // also send to server
-  fetch("/api/transaction", {
+  fetch("api/transactions", {
     method: "POST",
     body: JSON.stringify(transaction),
     headers: {
