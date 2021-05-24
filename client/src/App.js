@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import Navbar from "./components/Nav";
 import Home from "./pages/Home";
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 import './App.css';
 
@@ -20,6 +22,7 @@ const client = new ApolloClient({
 })
 
 function App() {
+  const [pageSelected, setPageSelected] = useState("home");
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -27,8 +30,8 @@ function App() {
             <Navbar />
             <Switch>
               <Route exact path="/" component={Home} />
-              {/* <Route exact path="/login" component={Login} /> */}
-              {/* <Route exact path="/signup" component={Signup} /> */}
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
             </Switch>
         </div>
       </Router>

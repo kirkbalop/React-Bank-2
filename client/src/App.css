@@ -69,7 +69,7 @@ tr:nth-child(even) {
   text-decoration: underline;
 }
 
-.form, Form.Group {
+.form, #username, #email, #password, label {
   margin-top: 25px;
   width: 100%;
   text-align: center;

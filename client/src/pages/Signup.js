@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
 
-import Auth from '../../utils/auth';
-import { ADD_USER } from '../../utils/mutations';
+import Auth from '../utils/auth';
+import { ADD_USER } from '../utils/mutations';
 
-const SignupForm = () => {
+const Signup = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   // set state for form validation
@@ -58,6 +58,7 @@ const SignupForm = () => {
             type='text'
             placeholder='Your username'
             id='username'
+            name='username'
             onChange={handleInputChange}
             value={userFormData.username}
             required
@@ -83,8 +84,8 @@ const SignupForm = () => {
           <Form.Label htmlFor='password'>Password</Form.Label>
           <Form.Control
             type='password'
-            placeholder='Your password'
             id='password'
+            placeholder='Your password'
             name='password'
             onChange={handleInputChange}
             value={userFormData.password}
@@ -103,4 +104,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default Signup;
