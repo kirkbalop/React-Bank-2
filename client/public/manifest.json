@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ReactBank2",
+  "name": "The Bank of React",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "myFace.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
